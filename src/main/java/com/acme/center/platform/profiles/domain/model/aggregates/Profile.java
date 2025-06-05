@@ -6,8 +6,10 @@ import com.acme.center.platform.profiles.domain.model.valueobjects.PersonName;
 import com.acme.center.platform.profiles.domain.model.valueobjects.StreetAddress;
 import com.acme.center.platform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 @Entity
+@Getter
 public class Profile extends AuditableAbstractAggregateRoot<Profile> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
