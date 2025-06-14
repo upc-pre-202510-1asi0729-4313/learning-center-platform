@@ -9,9 +9,6 @@ import lombok.Getter;
 
 @Entity
 public class Student extends AuditableAbstractAggregateRoot<Student> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Getter
     @Embedded

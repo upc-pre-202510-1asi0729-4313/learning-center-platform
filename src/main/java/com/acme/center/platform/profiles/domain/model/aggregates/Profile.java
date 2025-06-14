@@ -11,9 +11,6 @@ import lombok.Getter;
 @Entity
 @Getter
 public class Profile extends AuditableAbstractAggregateRoot<Profile> {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @Embedded
     private PersonName name;

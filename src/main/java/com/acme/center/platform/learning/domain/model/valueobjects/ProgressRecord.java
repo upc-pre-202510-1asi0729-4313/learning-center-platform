@@ -17,4 +17,8 @@ public class ProgressRecord {
     public ProgressRecord() {
         progressRecordItems = new ArrayList<>();
     }
+
+    public void completeTutorial(TutorialId tutorialId, LearningPath learningPath) {
+
+    }
 }
