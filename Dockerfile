@@ -1,5 +1,5 @@
 # Stage 1: Build the Spring Boot application
-FROM maven:3.9.6-eclipse-temurin-21 AS build
+FROM openjdk:24-jdk AS build
 # Use a Maven image with a compatible Java version (e.g., Temurin 21)
 WORKDIR /app
 COPY pom.xml .
