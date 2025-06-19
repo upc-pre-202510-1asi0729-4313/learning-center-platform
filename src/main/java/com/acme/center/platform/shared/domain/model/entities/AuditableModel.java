@@ -13,6 +13,7 @@ import java.util.Date;
 public class AuditableModel {
 
     @Id
+    @Getter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
