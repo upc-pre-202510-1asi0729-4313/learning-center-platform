@@ -11,5 +11,6 @@ FROM eclipse-temurin:24-jre-alpine
 # Use a JRE-only image for smaller footprint
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080 # Or your application's port
+EXPOSE 8080
+# Or your application's port
 ENTRYPOINT ["java", "-jar", "app.jar"]
