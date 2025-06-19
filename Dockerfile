@@ -1,13 +1,17 @@
-# 🛠️ ETAPA DE BUILD (usa Maven con JDK 24)
-FROM eclipse-temurin:24-jdk as build
+# -------- Etapa de build --------
+FROM maven:3.9.6-eclipse-temurin-24 AS build
 WORKDIR /app
 COPY pom.xml ./
 COPY src ./src
-RUN apt update && apt install -y maven && mvn clean package -DskipTests
+RUN mvn clean package -DskipTests
 
-# 🚀 ETAPA DE EJECUCIÓN (solo el JAR y el JDK 24 ligero)
-FROM eclipse-temurin:24-jdk-alpine
+# -------- Etapa de ejecución --------
+FROM eclipse-temurin:24-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
+
+# Render espera que tu app escuche en el puerto definido por PORT
+ENV PORT=8080
 EXPOSE 8080
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
