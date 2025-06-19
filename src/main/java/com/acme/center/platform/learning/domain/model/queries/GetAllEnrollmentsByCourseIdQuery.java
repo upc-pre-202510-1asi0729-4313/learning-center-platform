@@ -1,4 +1,4 @@
-package com.acme.center.platform.learning.domain.queries;
+package com.acme.center.platform.learning.domain.model.queries;
 
 /**
  * Query to get all enrollments by course id.
