@@ -1,18 +1,19 @@
-# --- Etapa de build: Maven + JDK 24 ---
-FROM maven:3-eclipse-temurin-24-alpine AS build
+# Etapa única: compila y ejecuta en la misma imagen
+FROM eclipse-temurin:24-jdk
+
 WORKDIR /app
-COPY pom.xml ./
-COPY src ./src
+
+# Copiamos todo el proyecto
+COPY . .
+
+# Instalamos Maven (si no está incluido)
+RUN apt-get update && apt-get install -y maven
+
+# Compilamos el proyecto
 RUN mvn clean package -DskipTests
 
-# --- Etapa de ejecución: JRE Alpinizado con JDK 24 ---
-FROM eclipse-temurin:24-jre-alpine
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
-
-# Puerto que expondrá tu app
-ENV PORT=8080
+# Expone el puerto por defecto de Spring Boot
 EXPOSE 8080
 
-# Iniciar la aplicación
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Ejecutamos el jar generado
+CMD ["java", "-jar", "target/platform-0.0.1-SNAPSHOT.jar"]
