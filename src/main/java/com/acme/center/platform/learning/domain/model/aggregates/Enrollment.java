@@ -17,7 +17,7 @@ public class Enrollment extends AuditableAbstractAggregateRoot<Enrollment> {
 
     @Getter
     @Embedded
-    private AcmeStudentRecordId auditableStudentRecordId;
+    private AcmeStudentRecordId acmeStudentRecordId;
 
     @Getter
     @ManyToOne
@@ -34,7 +34,7 @@ public class Enrollment extends AuditableAbstractAggregateRoot<Enrollment> {
     }
 
     public Enrollment(AcmeStudentRecordId acmeStudentRecordId, Course course) {
-        this.auditableStudentRecordId = acmeStudentRecordId;
+        this.acmeStudentRecordId = acmeStudentRecordId;
         this.course = course;
         this.status = EnrollmentStatus.REQUESTED;
         this.progressRecord = new ProgressRecord();
