@@ -7,18 +7,26 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 
-@Entity
+/**
+ * LearningPathItem entity
+ * @summary
+ * This entity represents a learning path item.
+ * A learning path item is a course with a tutorialId and a reference to the next item in the learning path.
+ * @see Course
+ * @see TutorialId
+ * @since 1.0
+ */
 @Getter
+@Entity
 public class LearningPathItem extends AuditableModel {
-
     @ManyToOne
-    @JoinColumn(name = "cource_id")
+    @JoinColumn(name = "course_id")
     @NotNull
     private Course course;
 
     @NotNull
     @Embedded
-    @Column(name = "titorial_id")
+    @Column(name = "tutorial_id")
     private TutorialId tutorialId;
 
     @ManyToOne
@@ -36,6 +44,10 @@ public class LearningPathItem extends AuditableModel {
         this.nextItem = null;
     }
 
+    /**
+     * Update the next item in the learning path
+     * @param nextItem The next item in the learning path
+     */
     public void updateNextItem(LearningPathItem nextItem) {
         this.nextItem = nextItem;
     }
